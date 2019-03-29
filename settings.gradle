@@ -1,1 +1,1 @@
-include ':app', ':scratchcardview'
+include ':exampleapp', ':scratchcardview'

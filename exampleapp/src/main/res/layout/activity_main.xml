@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <in.codeshuffle.scratchcardview.ScratchCardView
+    <in.codeshuffle.scratchcardview.ui.ScratchCardLayout
+        android:id="@+id/scratchCard"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_centerInParent="true">
@@ -14,8 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="hi" />
-
-    </in.codeshuffle.scratchcardview.ScratchCardView>
+            android:layout_gravity="center"
+            android:drawableTop="@mipmap/ic_launcher"
+            android:text="@string/better_luck_next_time" />
+    </in.codeshuffle.scratchcardview.ui.ScratchCardLayout>
 
 </RelativeLayout>
