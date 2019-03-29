@@ -22,36 +22,34 @@
  
  ```
  dependencies {
-      implementation 'in.codeshuffle:typewriterview:1.1.0'
+      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.0'
  }
  ```
  
  ## XML Usage
  ```xml
- <in.codeshuffle.typewriterview.TypeWriterView
-        android:id="@+id/typeWriterView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textStyle="bold" />           
+  <in.codeshuffle.scratchcardview.ui.ScratchCardLayout
+         android:id="@+id/scratchCard"
+         android:layout_width="250dp"
+         android:layout_height="250dp"
+         android:layout_centerInParent="true"
+         app:scratchWidth="40dp"
+         app:scratchDrawable="@drawable/your_drawable">
+ 
+         <!--Your complex view here-->
+  </in.codeshuffle.scratchcardview.ui.ScratchCardLayout>     
  ```
  
  ## Java Usage
  ```java
-         //Create Object and refer to layout view
-         TypeWriterView typeWriterView=(TypeWriterView)findViewById(R.id.typeWriterView);
-         
-         //Setting each character animation delay
-         typeWriterView.setDelay(int);
-         
-         //Setting music effect On/Off
-         typeWriterView.setWithMusic(boolean);
-          
-         //Animating Text
-         typeWriterView.animateText(string);
-         
-         //Remove Animation. This is required to be called when you want to minimize the app while animation is going on. Call this in onPause() or onStop()
-         typeWriterView.removeAnimation();
+        //Get view reference
+        ScratchCardLayout scratchCardLayout = findViewById(R.id.scratchCard);
+        
+        //Set the drawable (programmatically)
+        scratchCardLayout.setScratchDrawable(getResources().getDrawable(R.drawable.car));
+        
+        //Set scratch brush width
+        scratchCardLayout.setScratchWidth(30f);
  ``` 
  
  ### Listeners available
@@ -61,33 +59,31 @@ Implement the given interface and override these stuff:
 ```java
 
           //Implement this to your class
-          yourClass extends someBaseClass implements TypeWriterListener
+          yourClass extends someBaseClass implements ScratchListener
           
-          //then listen to callbacks
-          typeWriterView.setTypeWriterListener(this)
+          //Set the listener
+          scratchCardLayout.setScratchListener(this);
             
-          //animation starts with animateText()
-          onTypingStart(String text);
-          
-          //animation typed one character (for each character)
-          onCharacterTyped(String text, int position);
-
-          //Animation is removed using removeAnimation()
-          onTypingRemoved(String text);
-          
-          //Animation ends printing entire text
-          onTypingEnd(String text);
+          //You'll have three main callback methods as scratch listeners
+          //Scratch started
+          void onScratchStarted();
+            
+          //Scracth progress
+          void onScratchProgress(ScratchCardLayout scratchCardLayout, int scratchProgress);
+            
+          //Scratch completed
+          void onScratchComplete();
   ``` 
  
  ## Note
  ```
- - The function animateText() if called with another string when already an animation is going on, will have no effect!!
+ - The progress is the value guaranteeing that the mentioned percent is atleast scratched. NOT THE EXACT PERCENTAGE (for performance reasaons)
  ```
  
  License
  -------
  
-     Copyright 2018 SkyManSandy
+     Copyright 2019 SkyManSandy
  
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
