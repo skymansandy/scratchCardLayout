@@ -5,14 +5,14 @@ publish {
 
     def groupProjectID = 'in.codeshuffle.scratchcardlayout'
     def artifactProjectID = 'ScratchCardLayout'
-    def publishVersionID = '1.0.0'
+    def publishVersionID = '1.0.1'
 
     userOrg = 'skymansandy'
     repoName = 'ScratchCard'
     groupId = groupProjectID
     artifactId = artifactProjectID
     publishVersion = publishVersionID
-    desc = 'Scratch card reveal effect library. Simply wrap any of your layout inside this layout.'
+    desc = 'A simple Android library for scratch card reveal kind of effect'
     website = 'https://github.com/skymansandy/scratchCardLayout'
 
 }
