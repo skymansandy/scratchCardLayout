@@ -11,6 +11,7 @@
 
  - Scratch card effect to ANY view.
  - Just wrap your existing complex Layout with ScratchCardLayout.
+ - CardView based library. So All styling of CardView is available.
  - Set scratch brush width.
  - Set Drawable to be scratched (color / image).
  - Set the percentage of scratch when you should be revealing full layout.
