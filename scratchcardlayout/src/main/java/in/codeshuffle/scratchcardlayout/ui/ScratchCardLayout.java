@@ -12,7 +12,6 @@ import in.codeshuffle.scratchcardlayout.util.Utils;
 public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCardInterface {
 
     private ScratchCard scratchCard;
-    private ScratchListener mListener;
     private Context mContext;
 
     public ScratchCardLayout(Context context) {
@@ -33,14 +32,14 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     /**
      * Set the scratch brush width
      *
-     * @param mScratchWidth width in dp
+     * @param mScratchWidth width in dp (will be converted to px automatically in library side)
      */
     public void setScratchWidth(float mScratchWidth) {
         scratchCard.setScratchWidth(Utils.dipToPx(mContext, mScratchWidth));
     }
 
     /**
-     * Set the layout res of view to show for scratching
+     * Set the layout res of view to show for scratching (drawable image or a color drawable)
      *
      * @param mScratchDrawable layout res
      */
@@ -51,10 +50,9 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     /**
      * Scratch listener
      *
-     * @param mListener listener object
+     * @param mListener listener object (implement the class in which to listen)
      */
     public void setScratchListener(ScratchListener mListener) {
-        this.mListener = mListener;
         scratchCard.setListener(mListener);
     }
 
@@ -66,7 +64,7 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     }
 
     /**
-     * Add the scratch card to layout
+     * Adding the scratch card to layout
      */
     private void setupScratchView() {
         scratchCard.setLayoutParams(new CardView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -86,8 +84,13 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
         scratchCard.setVisibility(GONE);
     }
 
+    /**
+     * Reveal full layout when a percent is scratched
+     *
+     * @param revealFullAtPercent threshold percent
+     */
     public void setRevealFullAtPercent(int revealFullAtPercent) {
-        scratchCard.setRevealFullAtPercent(revealFullAtPercent);
+        scratchCard.setmRevealFullAtPercent(revealFullAtPercent);
     }
 
     @Override

@@ -30,7 +30,7 @@ class ScratchCard extends View {
     private float mScratchWidth;
     private float mLastTouchX;
     private float mLastTouchY;
-    private int revealFullAtPercent;
+    private int mRevealFullAtPercent;
     private ScratchCardInterface mRevealListener;
 
     ScratchCard(Context context, AttributeSet attrs, int defStyle) {
@@ -42,19 +42,8 @@ class ScratchCard extends View {
         @SuppressLint("CustomViewStyleable") TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ScratchCardLayout);
         mScratchDrawable = a.getDrawable(R.styleable.ScratchCardLayout_scratchDrawable);
         mScratchWidth = a.getDimension(R.styleable.ScratchCardLayout_scratchWidth, Utils.dipToPx(context, 30));
+        mRevealFullAtPercent = a.getInteger(R.styleable.ScratchCardLayout_scratchRevealFullAtPercent, 100);
         a.recycle();
-    }
-
-    public void setScratchDrawable(Drawable mScratchDrawable) {
-        this.mScratchDrawable = mScratchDrawable;
-    }
-
-    public void setScratchWidth(float mScratchWidth) {
-        this.mScratchWidth = mScratchWidth;
-    }
-
-    public void setListener(ScratchListener mListener) {
-        this.mListener = mListener;
     }
 
     @Override
@@ -139,7 +128,7 @@ class ScratchCard extends View {
                         mListener.onScratchStarted();
                     } else if (percentCompleted == 100) {
                         stopScratchingAndRevealFull();
-                    } else if (percentCompleted >= revealFullAtPercent) {
+                    } else if (percentCompleted >= mRevealFullAtPercent) {
                         stopScratchingAndRevealFull();
                     } else {
                         mListener.onScratchProgress((ScratchCardLayout) getParent(), percentCompleted);
@@ -183,15 +172,27 @@ class ScratchCard extends View {
         }
     }
 
-    public void setRevealFullAtPercent(int revealFullAtPercent) {
-        this.revealFullAtPercent = revealFullAtPercent;
+    public void setScratchDrawable(Drawable mScratchDrawable) {
+        this.mScratchDrawable = mScratchDrawable;
+    }
+
+    public void setScratchWidth(float mScratchWidth) {
+        this.mScratchWidth = mScratchWidth;
+    }
+
+    public void setListener(ScratchListener mListener) {
+        this.mListener = mListener;
+    }
+
+    public void setmRevealFullAtPercent(int mRevealFullAtPercent) {
+        this.mRevealFullAtPercent = mRevealFullAtPercent;
     }
 
     public void setRevealListener(ScratchCardLayout scratchCardLayout) {
         this.mRevealListener = scratchCardLayout;
     }
 
-    public interface ScratchCardInterface {
+    interface ScratchCardInterface {
         void onFullReveal();
     }
 }

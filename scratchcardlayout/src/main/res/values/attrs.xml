@@ -3,5 +3,6 @@
     <declare-styleable name="ScratchCardLayout">
         <attr name="scratchDrawable" format="reference|color" />
         <attr name="scratchWidth" format="dimension" />
+        <attr name="scratchRevealFullAtPercent" format="integer" />
     </declare-styleable>
 </resources>

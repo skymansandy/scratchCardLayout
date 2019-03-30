@@ -1,4 +1,4 @@
-# TypeWriterView
+# ScratchCardLayout
 
 [![MinSDK](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
 [![Build Status](https://travis-ci.org/skymansandy/scratchCardView.svg?branch=master)](https://travis-ci.org/skymansandy/scratchCardView)
@@ -8,13 +8,18 @@
 
 ## Features:
 
- - TODO
+ - Scratch card effect to ANY view.
+ - Just wrap your existing complex Layout with ScratchCardLayout.
+ - Set scratch brush width.
+ - Set Drawable to be scratched (color / image).
+ - Set the percentage of scratch when you should be revealing full layout.
+ - Get callbacks when scratching starts, progresses (with a percentage) and when stops.
  
  
 # Demonstration
-|Demo scratchCardView|
+|Demo scratchCardLayout|
 |:---:|
-|![](art/demoTypeWriterView.gif)|
+|![](art/demoScratchCardLayout.gif)|
 
  
 # Usage
@@ -22,7 +27,7 @@
  
  ```
  dependencies {
-      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.0'
+      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.1'
  }
  ```
  
@@ -34,7 +39,8 @@
          android:layout_height="250dp"
          android:layout_centerInParent="true"
          app:scratchWidth="40dp"
-         app:scratchDrawable="@drawable/your_drawable">
+         app:scratchDrawable="@drawable/your_drawable"
+         app:scratchRevealFullAtPercent="100">
  
          <!--Your complex view here-->
   </in.codeshuffle.scratchcardview.ui.ScratchCardLayout>     
@@ -50,6 +56,9 @@
         
         //Set scratch brush width
         scratchCardLayout.setScratchWidth(30f);
+        
+        //Reveal full layout when some percent of the view is scratched
+        scratchCardLayout.setRevealFullAtPercent(40);
  ``` 
  
  ### Listeners available
@@ -68,8 +77,8 @@ Implement the given interface and override these stuff:
           //Scratch started
           void onScratchStarted();
             
-          //Scracth progress
-          void onScratchProgress(ScratchCardLayout scratchCardLayout, int scratchProgress);
+          //Scracth progress (NOTE: not guaranteed to be exact percent. consider it like atleast this much percent has been scratched)
+          void onScratchProgress(ScratchCardLayout scratchCardLayout, int atLeastScratchedPercent);
             
           //Scratch completed
           void onScratchComplete();
