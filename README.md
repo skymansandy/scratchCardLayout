@@ -1,7 +1,7 @@
 # ScratchCardLayout
 
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![MinSDK](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+[![MinSDK](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Build Status](https://travis-ci.org/skymansandy/scratchCardView.svg?branch=master)](https://travis-ci.org/skymansandy/scratchCardView)
 
 ## A simple Android library for scratch card reveal kind of effect
@@ -25,10 +25,11 @@
  
 # Usage
 ## Dependency:
+
  
  ```
  dependencies {
-      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.1'
+      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.2'
  }
  ```
  
