@@ -30,6 +30,8 @@ class ScratchCard extends View {
     private float mScratchWidth;
     private float mLastTouchX;
     private float mLastTouchY;
+    private int revealFullAtPercent;
+    private ScratchCardInterface mRevealListener;
 
     ScratchCard(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -39,7 +41,7 @@ class ScratchCard extends View {
     private void init(Context context, AttributeSet attrs) {
         @SuppressLint("CustomViewStyleable") TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ScratchCardLayout);
         mScratchDrawable = a.getDrawable(R.styleable.ScratchCardLayout_scratchDrawable);
-        mScratchWidth = a.getDimension(R.styleable.ScratchCardLayout_scratchWidth, Utils.dipToPx(context, 20));
+        mScratchWidth = a.getDimension(R.styleable.ScratchCardLayout_scratchWidth, Utils.dipToPx(context, 30));
         a.recycle();
     }
 
@@ -132,13 +134,15 @@ class ScratchCard extends View {
                                 count++;
                         }
                     }
-                    float percentCompleted = (((float) count) / total * 9) * 100;
+                    int percentCompleted = (int) ((((float) count) / total * 9) * 100);
                     if (percentCompleted == 0) {
                         mListener.onScratchStarted();
                     } else if (percentCompleted == 100) {
-                        mListener.onScratchComplete();
+                        stopScratchingAndRevealFull();
+                    } else if (percentCompleted >= revealFullAtPercent) {
+                        stopScratchingAndRevealFull();
                     } else {
-                        mListener.onScratchProgress((ScratchCardLayout) getParent(), (int) percentCompleted);
+                        mListener.onScratchProgress((ScratchCardLayout) getParent(), percentCompleted);
                     }
                 }
                 break;
@@ -151,6 +155,17 @@ class ScratchCard extends View {
 
         invalidate();
         return true;
+    }
+
+    private void stopScratchingAndRevealFull() {
+        if (mListener != null) {
+            if (mRevealListener != null) {
+                mRevealListener.onFullReveal();
+                mRevealListener = null;
+            }
+            mListener.onScratchComplete();
+            mListener = null;
+        }
     }
 
     @Override
@@ -166,5 +181,17 @@ class ScratchCard extends View {
             mBitmap.recycle();
             mBitmap = null;
         }
+    }
+
+    public void setRevealFullAtPercent(int revealFullAtPercent) {
+        this.revealFullAtPercent = revealFullAtPercent;
+    }
+
+    public void setRevealListener(ScratchCardLayout scratchCardLayout) {
+        this.mRevealListener = scratchCardLayout;
+    }
+
+    public interface ScratchCardInterface {
+        void onFullReveal();
     }
 }

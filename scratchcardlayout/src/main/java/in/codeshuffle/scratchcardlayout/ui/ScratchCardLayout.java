@@ -7,11 +7,13 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 import in.codeshuffle.scratchcardlayout.listener.ScratchListener;
+import in.codeshuffle.scratchcardlayout.util.Utils;
 
-public class ScratchCardLayout extends CardView {
+public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCardInterface {
 
     private ScratchCard scratchCard;
     private ScratchListener mListener;
+    private Context mContext;
 
     public ScratchCardLayout(Context context) {
         super(context);
@@ -31,10 +33,10 @@ public class ScratchCardLayout extends CardView {
     /**
      * Set the scratch brush width
      *
-     * @param mScratchWidth width in pixel
+     * @param mScratchWidth width in dp
      */
     public void setScratchWidth(float mScratchWidth) {
-        scratchCard.setScratchWidth(mScratchWidth);
+        scratchCard.setScratchWidth(Utils.dipToPx(mContext, mScratchWidth));
     }
 
     /**
@@ -57,7 +59,9 @@ public class ScratchCardLayout extends CardView {
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
+        this.mContext = context;
         scratchCard = new ScratchCard(context, attrs, defStyleAttr);
+        scratchCard.setRevealListener(this);
         setupScratchView();
     }
 
@@ -80,8 +84,14 @@ public class ScratchCardLayout extends CardView {
      */
     public void stopScratching() {
         scratchCard.setVisibility(GONE);
-        if (mListener != null) {
-            mListener.onScratchComplete();
-        }
+    }
+
+    public void setRevealFullAtPercent(int revealFullAtPercent) {
+        scratchCard.setRevealFullAtPercent(revealFullAtPercent);
+    }
+
+    @Override
+    public void onFullReveal() {
+        stopScratching();
     }
 }

@@ -3,7 +3,6 @@ package in.codeshuffle.scratchcardlayoutexample;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import in.codeshuffle.scratchcardlayout.listener.ScratchListener;
 import in.codeshuffle.scratchcardlayout.ui.ScratchCardLayout;
@@ -17,9 +16,10 @@ public class MainActivity extends AppCompatActivity implements ScratchListener {
         setContentView(R.layout.activity_main);
 
         ScratchCardLayout scratchCardLayout = findViewById(R.id.scratchCard);
-        scratchCardLayout.setScratchDrawable(getResources().getDrawable(R.drawable.car));
+        scratchCardLayout.setScratchDrawable(getResources().getDrawable(R.drawable.scratch));
         scratchCardLayout.setScratchListener(this);
-        scratchCardLayout.setScratchWidth(30f);
+        scratchCardLayout.setScratchWidth(40);
+        scratchCardLayout.setRevealFullAtPercent(40);
     }
 
     @Override
@@ -28,12 +28,8 @@ public class MainActivity extends AppCompatActivity implements ScratchListener {
     }
 
     @Override
-    public void onScratchProgress(ScratchCardLayout scratchCardLayout, int scratchProgress) {
-        Log.d("SCRATCH", "Progress = " + scratchProgress);
-        if (scratchProgress > 40) {
-            Toast.makeText(this, "Better luck next time bro", Toast.LENGTH_SHORT).show();
-            scratchCardLayout.stopScratching();
-        }
+    public void onScratchProgress(ScratchCardLayout scratchCardLayout, int atLeastScratchedPercent) {
+        Log.d("SCRATCH", "Progress = " + atLeastScratchedPercent);
     }
 
     @Override

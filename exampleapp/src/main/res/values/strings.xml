@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ScratchCardView</string>
     <string name="better_luck_next_time">Better luck next time</string>
+    <string name="money_will_be_credited_to_nowhere">Money will be credited to nowhere</string>
+    <string name="rupee_10">₹10</string>
+    <string name="you_have_not_won">You have not won</string>
+    <string name="trophy">Trophy</string>
 </resources>
