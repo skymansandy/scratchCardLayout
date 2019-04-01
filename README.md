@@ -111,3 +111,8 @@ Implement the given interface and override these stuff:
      See the License for the specific language governing permissions and
      limitations under the License.
 
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/skymansandy/scratchCardLayout/badge.svg?style=beer-square)](https://beerpay.io/skymansandy/scratchCardLayout)  [![Beerpay](https://beerpay.io/skymansandy/scratchCardLayout/make-wish.svg?style=flat-square)](https://beerpay.io/skymansandy/scratchCardLayout?focus=wish)
