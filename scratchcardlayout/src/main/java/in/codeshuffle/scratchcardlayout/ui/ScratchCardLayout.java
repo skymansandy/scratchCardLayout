@@ -97,4 +97,8 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     public void onFullReveal() {
         stopScratching();
     }
+
+    public void setScratchEnabled(boolean enableScratching) {
+        scratchCard.setScratchEnabled(enableScratching);
+    }
 }

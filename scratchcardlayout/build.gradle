@@ -5,7 +5,7 @@ publish {
 
     def groupProjectID = 'in.codeshuffle.scratchcardlayout'
     def artifactProjectID = 'ScratchCardLayout'
-    def publishVersionID = '1.0.2'
+    def publishVersionID = '1.0.3'
 
     userOrg = 'skymansandy'
     repoName = 'ScratchCard'
