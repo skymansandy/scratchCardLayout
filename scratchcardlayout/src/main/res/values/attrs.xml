@@ -4,5 +4,6 @@
         <attr name="scratchDrawable" format="reference|color" />
         <attr name="scratchWidth" format="dimension" />
         <attr name="scratchRevealFullAtPercent" format="integer" />
+        <attr name="scratchEnabled" format="boolean" />
     </declare-styleable>
 </resources>

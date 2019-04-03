@@ -32,6 +32,7 @@ class ScratchCard extends View {
     private float mLastTouchY;
     private int mRevealFullAtPercent;
     private ScratchCardInterface mRevealListener;
+    private boolean mEnableScratching;
 
     ScratchCard(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -43,6 +44,7 @@ class ScratchCard extends View {
         mScratchDrawable = a.getDrawable(R.styleable.ScratchCardLayout_scratchDrawable);
         mScratchWidth = a.getDimension(R.styleable.ScratchCardLayout_scratchWidth, Utils.dipToPx(context, 30));
         mRevealFullAtPercent = a.getInteger(R.styleable.ScratchCardLayout_scratchRevealFullAtPercent, 100);
+        mEnableScratching = a.getBoolean(R.styleable.ScratchCardLayout_scratchEnabled, true);
         a.recycle();
     }
 
@@ -87,6 +89,9 @@ class ScratchCard extends View {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        if (!mEnableScratching) return true;
+
         float currentTouchX = event.getX();
         float currentTouchY = event.getY();
 
@@ -190,6 +195,10 @@ class ScratchCard extends View {
 
     public void setRevealListener(ScratchCardLayout scratchCardLayout) {
         this.mRevealListener = scratchCardLayout;
+    }
+
+    public void setScratchEnabled(boolean enableScratching) {
+        this.mEnableScratching = enableScratching;
     }
 
     interface ScratchCardInterface {

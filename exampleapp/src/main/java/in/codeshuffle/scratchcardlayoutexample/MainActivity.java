@@ -1,6 +1,7 @@
 package in.codeshuffle.scratchcardlayoutexample;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -15,11 +16,12 @@ public class MainActivity extends AppCompatActivity implements ScratchListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ScratchCardLayout scratchCardLayout = findViewById(R.id.scratchCard);
+        final ScratchCardLayout scratchCardLayout = findViewById(R.id.scratchCard);
         scratchCardLayout.setScratchDrawable(getResources().getDrawable(R.drawable.scratch));
         scratchCardLayout.setScratchListener(this);
         scratchCardLayout.setScratchWidth(40);
         scratchCardLayout.setRevealFullAtPercent(40);
+        scratchCardLayout.setScratchEnabled(true);
     }
 
     @Override

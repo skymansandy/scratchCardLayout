@@ -15,6 +15,7 @@
  - Just wrap your existing complex Layout with ScratchCardLayout.
  - CardView based library. So All styling of CardView is available.
  - Set scratch brush width.
+ - Enable/Disable scratching effect
  - Set Drawable to be scratched (color / image).
  - Set the percentage of scratch when you should be revealing full layout.
  - Get callbacks when scratching starts, progresses (with a percentage) and when stops.
@@ -44,6 +45,7 @@
          android:layout_height="250dp"
          android:layout_centerInParent="true"
          app:scratchWidth="40dp"
+         app:scratchEnabled="true"
          app:scratchDrawable="@drawable/your_drawable"
          app:scratchRevealFullAtPercent="100">
  
@@ -64,6 +66,9 @@
         
         //Reveal full layout when some percent of the view is scratched
         scratchCardLayout.setRevealFullAtPercent(40);
+        
+        //Scratching enable/disable
+        scratchCardLayout.setScratchEnabled(true);
  ``` 
  
  ### Listeners available
