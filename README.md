@@ -33,7 +33,7 @@
  
  ```
  dependencies {
-      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.2'
+      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.3'
  }
  ```
  
