@@ -5,5 +5,6 @@ public class AppConstants {
         public static final String GITHUB_REPO_URL = "https://github.com/skymansandy/scratchCardLayout";
         public static final String ISSUE_FEEDBACK_URL = "https://github.com/skymansandy/scratchCardLayout/issues";
         public static final String DONATE_BEER_URL = "https://beerpay.io/skymansandy/scratchCardLayout";
+        public static final String VIEW_READ_ME = "https://github.com/skymansandy/scratchCardLayout/blob/master/README.md";
     }
 }

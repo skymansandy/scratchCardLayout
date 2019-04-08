@@ -12,6 +12,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -54,18 +55,7 @@ class ScratchCard extends View {
     protected void onSizeChanged(int w, int h, int oldWidth, int oldHeight) {
         super.onSizeChanged(w, h, oldWidth, oldHeight);
 
-        if (mBitmap != null)
-            mBitmap.recycle();
-
-        mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        mCanvas = new Canvas(mBitmap);
-
-        if (mScratchDrawable != null) {
-            mScratchDrawable.setBounds(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
-            mScratchDrawable.draw(mCanvas);
-        } else {
-            mCanvas.drawColor(0xFFC0C0C0);
-        }
+        setupScratchDrawableOnView();
 
         if (mPath == null) {
             mPath = new Path();
@@ -158,10 +148,8 @@ class ScratchCard extends View {
         if (mListener != null) {
             if (mRevealListener != null) {
                 mRevealListener.onFullReveal();
-                mRevealListener = null;
             }
             mListener.onScratchComplete();
-            mListener = null;
         }
     }
 
@@ -209,19 +197,24 @@ class ScratchCard extends View {
 
     public void resetScratch() {
         if (getWidth() != 0 && getHeight() != 0) {
-            if (mBitmap != null)
-                mBitmap.recycle();
-
-            mBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
-            mCanvas = new Canvas(mBitmap);
-
-            if (mScratchDrawable != null) {
-                mScratchDrawable.setBounds(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
-                mScratchDrawable.draw(mCanvas);
-            } else {
-                mCanvas.drawColor(0xFFC0C0C0);
-            }
+            setupScratchDrawableOnView();
             invalidate();
+            setVisibility(VISIBLE);
+        }
+    }
+
+    private void setupScratchDrawableOnView() {
+        if (mBitmap != null)
+            mBitmap.recycle();
+
+        mBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        mCanvas = new Canvas(mBitmap);
+
+        if (mScratchDrawable != null) {
+            mScratchDrawable.setBounds(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
+            mScratchDrawable.draw(mCanvas);
+        } else {
+            mCanvas.drawColor(0xFFC0C0C0);
         }
     }
 

@@ -7,6 +7,10 @@
             android:icon="@drawable/ic_menu_home"
             android:title="@string/menu_home" />
         <item
+            android:id="@+id/navMenuAboutLibrary"
+            android:icon="@drawable/ic_menu_about_library"
+            android:title="@string/menu_about_library" />
+        <item
             android:id="@+id/navMenuGithub"
             android:icon="@drawable/ic_menu_github_source"
             android:title="@string/menu_view_source" />

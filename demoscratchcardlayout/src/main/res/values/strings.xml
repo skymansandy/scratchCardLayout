@@ -16,6 +16,8 @@
     <string name="thanks_for_the_beer">Thanks for the beer :)</string>
     <string name="dev_name">P Sandesh Baliga</string>
     <string name="dev_url">http://skymansandy.github.io/</string>
+    <string name="menu_about_library">About library</string>
+    <string name="about_library">About library</string>
 
     <!--play store-->
     <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
@@ -38,4 +40,7 @@
     <string name="percentage">Percentage</string>
     <string name="reset">Reset</string>
     <string name="clear">Clear</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="resetting_view_since_reveal_percent_was_changed">Restting view since reveal percent setting was changed</string>
 </resources>

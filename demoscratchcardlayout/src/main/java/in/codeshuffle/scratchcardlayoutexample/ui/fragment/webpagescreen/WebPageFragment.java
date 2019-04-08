@@ -94,6 +94,9 @@ public class WebPageFragment extends DialogFragment {
                 WebPageContent content = (WebPageContent) bundle.getSerializable(CONTENT_TYPE);
                 content = (content == null) ? WebPageContent.PAGE_VIEW_IN_GITHUB : content;
                 switch (content) {
+                    case PAGE_VIEW_ABOUT_LIBRARY:
+                        webView.loadUrl(AppConstants.URLs.VIEW_READ_ME);
+                        break;
                     case PAGE_VIEW_IN_GITHUB:
                         webView.loadUrl(AppConstants.URLs.GITHUB_REPO_URL);
                         break;

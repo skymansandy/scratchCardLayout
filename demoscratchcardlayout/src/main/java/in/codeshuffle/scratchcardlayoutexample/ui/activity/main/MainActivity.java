@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private FragmentManager fragmentManager;
     private DemoFragment demoFragment;
+    private WebPageFragment aboutLibraryFragment;
     private WebPageFragment githubFragment;
     private WebPageFragment issueFeedBackFragment;
     private WebPageFragment donateBeerFragment;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setupFragments() {
         demoFragment = DemoFragment.getInstance();
+        aboutLibraryFragment = WebPageFragment.getInstance(WebPageContent.PAGE_VIEW_ABOUT_LIBRARY);
         githubFragment = WebPageFragment.getInstance(WebPageContent.PAGE_VIEW_IN_GITHUB);
         issueFeedBackFragment = WebPageFragment.getInstance(WebPageContent.PAGE_ISSUE_AND_FEEDBACK);
         donateBeerFragment = WebPageFragment.getInstance(WebPageContent.PAGE_DONATE_BEER);
@@ -99,6 +101,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.navMenuHome:
                 replaceFragment(demoFragment);
                 toolbar.setTitle(getString(R.string.app_name));
+                menuItem.setChecked(true);
+                break;
+            case R.id.navMenuAboutLibrary:
+                replaceFragment(aboutLibraryFragment);
+                toolbar.setTitle(getString(R.string.about_library));
                 menuItem.setChecked(true);
                 break;
             case R.id.navMenuGithub:
