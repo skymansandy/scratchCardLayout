@@ -36,4 +36,6 @@
     <string name="reveal_full_layout_at">Reveal full layout at %</string>
     <string name="logs">Logs</string>
     <string name="percentage">Percentage</string>
+    <string name="reset">Reset</string>
+    <string name="clear">Clear</string>
 </resources>

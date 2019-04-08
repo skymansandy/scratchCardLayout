@@ -90,7 +90,7 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
      * @param revealFullAtPercent threshold percent
      */
     public void setRevealFullAtPercent(int revealFullAtPercent) {
-        scratchCard.setmRevealFullAtPercent(revealFullAtPercent);
+        scratchCard.setRevealFullAtPercent(revealFullAtPercent);
     }
 
     @Override
@@ -100,5 +100,12 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
 
     public void setScratchEnabled(boolean enableScratching) {
         scratchCard.setScratchEnabled(enableScratching);
+    }
+
+    /**
+     * Reset scratch and show full scratch drawable
+     */
+    public void resetScratch() {
+        scratchCard.resetScratch();
     }
 }

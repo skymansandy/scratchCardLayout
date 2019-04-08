@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -24,6 +25,7 @@ class ScratchCard extends View {
     private Paint mInnerPaint;
     private Paint mOuterPaint;
     private Bitmap mBitmap;
+    private Bitmap mBitmapBackUp;
     private Canvas mCanvas;
     private Drawable mScratchDrawable;
     private ScratchListener mListener;
@@ -85,6 +87,7 @@ class ScratchCard extends View {
             mOuterPaint = new Paint();
         }
     }
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -183,13 +186,16 @@ class ScratchCard extends View {
 
     public void setScratchWidth(float mScratchWidth) {
         this.mScratchWidth = mScratchWidth;
+        if (mInnerPaint != null) {
+            mInnerPaint.setStrokeWidth(mScratchWidth);
+        }
     }
 
     public void setListener(ScratchListener mListener) {
         this.mListener = mListener;
     }
 
-    public void setmRevealFullAtPercent(int mRevealFullAtPercent) {
+    public void setRevealFullAtPercent(int mRevealFullAtPercent) {
         this.mRevealFullAtPercent = mRevealFullAtPercent;
     }
 
@@ -199,6 +205,24 @@ class ScratchCard extends View {
 
     public void setScratchEnabled(boolean enableScratching) {
         this.mEnableScratching = enableScratching;
+    }
+
+    public void resetScratch() {
+        if (getWidth() != 0 && getHeight() != 0) {
+            if (mBitmap != null)
+                mBitmap.recycle();
+
+            mBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+
+            if (mScratchDrawable != null) {
+                mScratchDrawable.setBounds(0, 0, mBitmap.getWidth(), mBitmap.getHeight());
+                mScratchDrawable.draw(mCanvas);
+            } else {
+                mCanvas.drawColor(0xFFC0C0C0);
+            }
+            invalidate();
+        }
     }
 
     interface ScratchCardInterface {

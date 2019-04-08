@@ -33,7 +33,7 @@
  
  ```
  dependencies {
-      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.3'
+      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.4'
  }
  ```
  
@@ -69,6 +69,9 @@
         
         //Scratching enable/disable
         scratchCardLayout.setScratchEnabled(true);
+        
+        //Remove all scratch made till now
+        scratchCardLayout.resetScratch();
  ``` 
  
  ### Listeners available
