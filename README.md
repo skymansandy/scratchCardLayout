@@ -33,7 +33,7 @@
  
  ```
  dependencies {
-      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.4'
+      implementation 'in.codeshuffle.scratchcardlayout:ScratchCardLayout:1.0.5'
  }
  ```
  
@@ -96,6 +96,10 @@ Implement the given interface and override these stuff:
           //Scratch completed
           void onScratchComplete();
   ``` 
+ 
+ ## PlayStore app
+ 
+ https://play.google.com/store/apps/details?id=in.codeshuffle.scratchcardlayoutexample
  
  ## Note
  ```
