@@ -80,7 +80,6 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
         scratchCardLayout.setRevealFullAtPercent(40);
         scratchCardLayout.setScratchEnabled(true);
         scratchCardLayout.resetScratch();
-        scratchCardLayout.setFullRevealWithFadeAnimation(true);
 
         //Xml Reset
         scratchWidth.setProgress(40);

@@ -1,22 +1,17 @@
 package in.codeshuffle.scratchcardlayout.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 
 import in.codeshuffle.scratchcardlayout.listener.ScratchListener;
-import in.codeshuffle.scratchcardlayout.util.ScratchCardUtils;
 
 public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCardInterface {
 
     private ScratchCard scratchCard;
     private Context mContext;
-    private boolean revealWithAnimation;
 
     public ScratchCardLayout(Context context) {
         super(context);
@@ -87,22 +82,7 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
      * Stop or Interrupt scratch effect
      */
     public void stopScratching() {
-        if (revealWithAnimation) {
-            scratchCard.animate()
-                    .translationY(scratchCard.getHeight())
-                    .alpha(0.0f)
-                    .setDuration(300)
-                    .setListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animation) {
-                            super.onAnimationEnd(animation);
-                            scratchCard.setVisibility(View.GONE);
-                            scratchCard.setAlpha(1.0f);
-                        }
-                    });
-        } else {
-            scratchCard.setVisibility(GONE);
-        }
+        scratchCard.setVisibility(GONE);
     }
 
     /**
@@ -119,6 +99,10 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
         stopScratching();
     }
 
+    /**
+     * Enable/Disable scratch effect
+     * @param enableScratching true/false based on your choice
+     */
     public void setScratchEnabled(boolean enableScratching) {
         scratchCard.setScratchEnabled(enableScratching);
     }
@@ -128,14 +112,5 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
      */
     public void resetScratch() {
         scratchCard.resetScratch();
-    }
-
-    /**
-     * Reveal the scratchable view with animation when stopping scratch
-     *
-     * @param revealWithAnimation, true/false based on your needs
-     */
-    public void setFullRevealWithFadeAnimation(boolean revealWithAnimation) {
-        this.revealWithAnimation = revealWithAnimation;
     }
 }

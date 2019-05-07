@@ -195,9 +195,9 @@ class ScratchCard extends View {
 
     public void resetScratch() {
         if (getWidth() != 0 && getHeight() != 0) {
+            setVisibility(VISIBLE);
             setupScratchDrawableOnView();
             invalidate();
-            setVisibility(VISIBLE);
         }
     }
 
