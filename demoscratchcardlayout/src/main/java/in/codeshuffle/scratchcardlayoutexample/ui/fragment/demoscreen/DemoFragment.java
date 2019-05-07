@@ -19,6 +19,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import in.codeshuffle.scratchcardlayout.listener.ScratchListener;
 import in.codeshuffle.scratchcardlayout.ui.ScratchCardLayout;
+import in.codeshuffle.scratchcardlayout.util.ScratchCardUtils;
 import in.codeshuffle.scratchcardlayoutexample.util.AppUtils;
 import in.codeshuffle.scratchcardviewexample.R;
 
@@ -35,6 +36,7 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
     AppCompatSeekBar revealFullAtPercent;
 
     private Unbinder unbinder;
+    private Context context;
 
     public static DemoFragment getInstance() {
         Bundle bundle = new Bundle();
@@ -46,6 +48,7 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -73,7 +76,7 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
         //Java reset
         scratchCardLayout.setScratchDrawable(getResources().getDrawable(R.drawable.scratch));
         scratchCardLayout.setScratchListener(this);
-        scratchCardLayout.setScratchWidthDip(40);
+        scratchCardLayout.setScratchWidthDip(ScratchCardUtils.dipToPx(context, 40));
         scratchCardLayout.setRevealFullAtPercent(40);
         scratchCardLayout.setScratchEnabled(true);
         scratchCardLayout.resetScratch();
@@ -100,7 +103,7 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                scratchCardLayout.setScratchWidthDip(seekBar.getProgress());
+                scratchCardLayout.setScratchWidthDip(ScratchCardUtils.dipToPx(context, seekBar.getProgress()));
             }
         });
 
