@@ -5,20 +5,18 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import in.codeshuffle.scratchcardlayout.R;
 import in.codeshuffle.scratchcardlayout.listener.ScratchListener;
-import in.codeshuffle.scratchcardlayout.util.Utils;
+import in.codeshuffle.scratchcardlayout.util.ScratchCardUtils;
 
 class ScratchCard extends View {
 
@@ -45,7 +43,7 @@ class ScratchCard extends View {
     private void init(Context context, AttributeSet attrs) {
         @SuppressLint("CustomViewStyleable") TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ScratchCardLayout);
         mScratchDrawable = a.getDrawable(R.styleable.ScratchCardLayout_scratchDrawable);
-        mScratchWidth = a.getDimension(R.styleable.ScratchCardLayout_scratchWidth, Utils.dipToPx(context, 30));
+        mScratchWidth = a.getDimension(R.styleable.ScratchCardLayout_scratchWidth, ScratchCardUtils.dipToPx(context, 30));
         mRevealFullAtPercent = a.getInteger(R.styleable.ScratchCardLayout_scratchRevealFullAtPercent, 100);
         mEnableScratching = a.getBoolean(R.styleable.ScratchCardLayout_scratchEnabled, true);
         a.recycle();
@@ -172,7 +170,7 @@ class ScratchCard extends View {
         this.mScratchDrawable = mScratchDrawable;
     }
 
-    public void setScratchWidth(float mScratchWidth) {
+    public void setScratchWidthDip(float mScratchWidth) {
         this.mScratchWidth = mScratchWidth;
         if (mInnerPaint != null) {
             mInnerPaint.setStrokeWidth(mScratchWidth);

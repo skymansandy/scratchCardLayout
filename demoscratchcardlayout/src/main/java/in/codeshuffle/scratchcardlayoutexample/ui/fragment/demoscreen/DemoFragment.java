@@ -73,7 +73,7 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
         //Java reset
         scratchCardLayout.setScratchDrawable(getResources().getDrawable(R.drawable.scratch));
         scratchCardLayout.setScratchListener(this);
-        scratchCardLayout.setScratchWidth(40);
+        scratchCardLayout.setScratchWidthDip(40);
         scratchCardLayout.setRevealFullAtPercent(40);
         scratchCardLayout.setScratchEnabled(true);
         scratchCardLayout.resetScratch();
@@ -100,7 +100,7 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                scratchCardLayout.setScratchWidth(seekBar.getProgress());
+                scratchCardLayout.setScratchWidthDip(seekBar.getProgress());
             }
         });
 

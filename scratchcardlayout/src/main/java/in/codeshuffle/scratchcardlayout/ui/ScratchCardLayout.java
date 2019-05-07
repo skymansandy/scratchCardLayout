@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import in.codeshuffle.scratchcardlayout.listener.ScratchListener;
-import in.codeshuffle.scratchcardlayout.util.Utils;
+import in.codeshuffle.scratchcardlayout.util.ScratchCardUtils;
 
 public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCardInterface {
 
@@ -36,16 +36,17 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     /**
      * Set the scratch brush width
      *
-     * @param mScratchWidth width in dp (will be converted to px automatically in library side)
+     * @param mScratchWidthDip width in dp (Use Utility method {@code ScratchCardUtils.dipToPx} for conversion)
      */
-    public void setScratchWidth(float mScratchWidth) {
-        scratchCard.setScratchWidth(Utils.dipToPx(mContext, mScratchWidth));
+    public void setScratchWidthDip(float mScratchWidthDip) {
+        scratchCard.setScratchWidthDip(mScratchWidthDip);
     }
 
     /**
-     * Set the layout res of view to show for scratching (drawable image or a color drawable)
+     * Set the layout resource id of image to show as overlay for scratching
+     * ({@code Drawable} image or {@code ColorDrawable})
      *
-     * @param mScratchDrawable layout res
+     * @param mScratchDrawable layout resource id
      */
     public void setScratchDrawable(Drawable mScratchDrawable) {
         scratchCard.setScratchDrawable(mScratchDrawable);
@@ -54,7 +55,8 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     /**
      * Scratch listener
      *
-     * @param mListener listener object (implement the class in which to listen)
+     * @param mListener listener object
+     *                  (implement the interface in the type of the instance passed in which to listen to callbacks)
      */
     public void setScratchListener(ScratchListener mListener) {
         scratchCard.setListener(mListener);
@@ -82,7 +84,7 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     }
 
     /**
-     * Stop scratch effect
+     * Stop or Interrupt scratch effect
      */
     public void stopScratching() {
         if (revealWithAnimation) {
@@ -104,7 +106,7 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     }
 
     /**
-     * Reveal full layout when a percent is scratched
+     * Reveal full layout when some threshold percent is scratched
      *
      * @param revealFullAtPercent threshold percent
      */
@@ -122,16 +124,16 @@ public class ScratchCardLayout extends CardView implements ScratchCard.ScratchCa
     }
 
     /**
-     * Reset scratch and show full scratch drawable
+     * Reset scratch. (As if its a whole new scratch session
      */
     public void resetScratch() {
         scratchCard.resetScratch();
     }
 
     /**
-     * Fully reveal the
+     * Reveal the scratchable view with animation when stopping scratch
      *
-     * @param revealWithAnimation, boolean
+     * @param revealWithAnimation, true/false based on your needs
      */
     public void setFullRevealWithFadeAnimation(boolean revealWithAnimation) {
         this.revealWithAnimation = revealWithAnimation;
