@@ -18,7 +18,7 @@
  - Enable/Disable scratching effect
  - Set Drawable to be scratched (color / image).
  - Set the percentage of scratch when you should be revealing full layout.
- - Get callbacks when scratching starts, progresses (with a percentage) and when stops.
+ - Get callbacks when scratching starts, progresses (with a percentage) and when stops..
  
  
 # Demonstration
