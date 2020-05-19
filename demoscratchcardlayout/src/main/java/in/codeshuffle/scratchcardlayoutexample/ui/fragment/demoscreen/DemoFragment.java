@@ -2,41 +2,30 @@ package in.codeshuffle.scratchcardlayoutexample.ui.fragment.demoscreen;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.widget.AppCompatSeekBar;
-import androidx.appcompat.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
 import in.codeshuffle.scratchcardlayout.listener.ScratchListener;
 import in.codeshuffle.scratchcardlayout.ui.ScratchCardLayout;
 import in.codeshuffle.scratchcardlayout.util.ScratchCardUtils;
 import in.codeshuffle.scratchcardlayoutexample.util.AppUtils;
 import in.codeshuffle.scratchcardviewexample.R;
+import in.codeshuffle.scratchcardviewexample.databinding.FragmentDemoBinding;
 
 public class DemoFragment extends DialogFragment implements ScratchListener {
 
     private static final String TAG = DemoFragment.class.getSimpleName();
-    @BindView(R.id.scratchCard)
-    ScratchCardLayout scratchCardLayout;
-    @BindView(R.id.scratchEffectToggle)
-    SwitchCompat scratchEffectToggle;
-    @BindView(R.id.brushSizeSeekBar)
-    AppCompatSeekBar scratchWidth;
-    @BindView(R.id.revealFullAtSeekBar)
-    AppCompatSeekBar revealFullAtPercent;
 
-    private Unbinder unbinder;
     private Context context;
+
+    private FragmentDemoBinding binding;
 
     public static DemoFragment getInstance() {
         Bundle bundle = new Bundle();
@@ -46,7 +35,7 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
     }
@@ -59,9 +48,8 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_demo, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentDemoBinding.inflate(inflater);
+        return binding.getRoot();
     }
 
     @Override
@@ -71,26 +59,28 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
         setControlPanelListeners();
     }
 
-    @OnClick(R.id.reset)
-    protected void resetLibraryView() {
-        //Java reset
-        scratchCardLayout.setScratchDrawable(getResources().getDrawable(R.drawable.scratch));
-        scratchCardLayout.setScratchListener(this);
-        scratchCardLayout.setScratchWidthDip(ScratchCardUtils.dipToPx(context, 40));
-        scratchCardLayout.setRevealFullAtPercent(40);
-        scratchCardLayout.setScratchEnabled(true);
-        scratchCardLayout.resetScratch();
+    private void resetLibraryView() {
+        binding.reset.setOnClickListener(v -> {
+            //Java reset
+            binding.scratchCard.setScratchDrawable(getResources().getDrawable(R.drawable.scratch));
+            binding.scratchCard.setScratchListener(DemoFragment.this);
+            binding.scratchCard.setScratchWidthDip(ScratchCardUtils.dipToPx(context, 40));
+            binding.scratchCard.setRevealFullAtPercent(40);
+            binding.scratchCard.setScratchEnabled(true);
+            binding.scratchCard.resetScratch();
 
-        //Xml Reset
-        scratchWidth.setProgress(40);
-        revealFullAtPercent.setProgress(40);
-        scratchEffectToggle.setChecked(true);
-        scratchEffectToggle.setText(getString(R.string.enabled));
+            //Xml Reset
+            binding.brushSizeSeekBar.setProgress(40);
+            binding.revealFullAtSeekBar.setProgress(40);
+            binding.scratchEffectToggle.setChecked(true);
+            binding.scratchEffectToggle.setText(getString(R.string.enabled));
+        });
+        binding.reset.performClick();
     }
 
     private void setControlPanelListeners() {
         //Scratch Brush size config
-        scratchWidth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        binding.brushSizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             }
@@ -102,18 +92,18 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                scratchCardLayout.setScratchWidthDip(ScratchCardUtils.dipToPx(context, seekBar.getProgress()));
+                binding.scratchCard.setScratchWidthDip(ScratchCardUtils.dipToPx(context, seekBar.getProgress()));
             }
         });
 
         //Scratch effect config
-        scratchEffectToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            scratchCardLayout.setScratchEnabled(isChecked);
-            scratchEffectToggle.setText(getString(isChecked ? R.string.enabled : R.string.disabled));
+        binding.scratchEffectToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            binding.scratchCard.setScratchEnabled(isChecked);
+            binding.scratchEffectToggle.setText(getString(isChecked ? R.string.enabled : R.string.disabled));
         });
 
         //Scratch reveal at percent
-        revealFullAtPercent.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        binding.revealFullAtSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
             }
@@ -126,8 +116,8 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 AppUtils.showShortToast(getActivity(), getString(R.string.resetting_view_since_reveal_percent_was_changed));
-                scratchCardLayout.setRevealFullAtPercent(seekBar.getProgress());
-                scratchCardLayout.resetScratch();
+                binding.scratchCard.setRevealFullAtPercent(seekBar.getProgress());
+                binding.scratchCard.resetScratch();
             }
         });
     }
@@ -140,12 +130,6 @@ public class DemoFragment extends DialogFragment implements ScratchListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     @Override
