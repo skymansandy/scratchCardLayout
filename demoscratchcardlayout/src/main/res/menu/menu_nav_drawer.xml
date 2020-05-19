@@ -22,13 +22,12 @@
         <item
             android:id="@+id/navMenuDonateBeer"
             android:icon="@drawable/ic_menu_donate_beer"
-            android:title="@string/menu_donate_a_beer" />
-
+            android:title="@string/menu_donate_a_beer"
+            android:visible="false" />
 
         <item android:title="@string/off_topic">
             <menu>
-                <group
-                    android:checkableBehavior="none">
+                <group android:checkableBehavior="none">
                     <item
                         android:id="@+id/navMenuAbout"
                         android:icon="@drawable/ic_menu_about_me"
