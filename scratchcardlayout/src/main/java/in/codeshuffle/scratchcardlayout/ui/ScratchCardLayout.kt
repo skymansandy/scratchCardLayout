@@ -74,7 +74,7 @@ class ScratchCardLayout : CardView, ScratchCard.ScratchCardInterface {
     /**
      * Stop or Interrupt scratch effect
      */
-    fun stopScratching() {
+    private fun stopScratching() {
         scratchCard.visibility = View.GONE
     }
 

@@ -41,26 +41,25 @@ class DemoFragment : DialogFragment(), ScratchListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         resetLibraryView()
+        resetControlPanelView()
         setControlPanelListeners()
     }
 
     private fun resetLibraryView() {
         binding.scratchCard.setScratchListener(this)
 
-        binding.reveal.setOnClickListener {
-            binding.scratchCard.revealScratch()
-        }
-
+        binding.reveal.setOnClickListener { binding.scratchCard.revealScratch() }
         binding.reset.setOnClickListener {
-            //Props reset
             binding.scratchCard.resetScratch()
-
-            //Xml Reset
-            binding.brushSizeSeekBar.progress = 40
-            binding.revealFullAtSeekBar.progress = 40
-            binding.scratchEffectToggle.isChecked = true
-            binding.scratchEffectToggle.text = getString(R.string.enabled)
+            resetControlPanelView()
         }
+    }
+
+    private fun resetControlPanelView() {
+        binding.brushSizeSeekBar.progress = 40
+        binding.revealFullAtSeekBar.progress = 40
+        binding.scratchEffectToggle.isChecked = true
+        binding.scratchEffectToggle.text = getString(R.string.enabled)
     }
 
     private fun setControlPanelListeners() {
