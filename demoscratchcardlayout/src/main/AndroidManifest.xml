@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="in.codeshuffle.scratchcardviewexample">
+    package="dev.skymansandy.scratchcardviewexample">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,7 +15,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="in.codeshuffle.scratchcardlayoutexample.ui.activity.main.MainActivity"
+            android:name="dev.skymansandy.scratchcardlayoutexample.ui.activity.main.MainActivity"
             android:screenOrientation="portrait"
             android:label="@string/library_app_name">
             <intent-filter>
