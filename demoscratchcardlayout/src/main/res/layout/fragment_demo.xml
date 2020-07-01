@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <in.codeshuffle.scratchcardlayout.ui.ScratchCardLayout
+    <dev.skymansandy.scratchcardlayout.ui.ScratchCardLayout
         android:id="@+id/scratchCard"
         android:layout_width="250dp"
         android:layout_height="250dp"
@@ -48,7 +48,7 @@
 
 
         </LinearLayout>
-    </in.codeshuffle.scratchcardlayout.ui.ScratchCardLayout>
+    </dev.skymansandy.scratchcardlayout.ui.ScratchCardLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
