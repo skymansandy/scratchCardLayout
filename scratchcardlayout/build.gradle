@@ -46,3 +46,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 }
+
+/**
+ *
+ Steps to upload to bintray
+
+ $ export JAVA_HOME=`/usr/libexec/java_home -v  1.8.0_252`
+
+ $ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
+ $ ./gradlew clean build bintrayUpload -PbintrayUser=user -PbintrayKey=apikey -PdryRun=false
+
+ */
