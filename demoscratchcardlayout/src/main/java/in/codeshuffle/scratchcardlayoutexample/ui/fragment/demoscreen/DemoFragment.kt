@@ -16,6 +16,7 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import kotlinx.android.synthetic.main.fragment_demo.view.*
 
 class DemoFragment : DialogFragment(), ScratchListener {
 
@@ -44,16 +45,15 @@ class DemoFragment : DialogFragment(), ScratchListener {
     }
 
     private fun resetLibraryView() {
+        binding.scratchCard.setScratchListener(this)
+
+        binding.reveal.setOnClickListener {
+            binding.scratchCard.revealScratch()
+        }
+
         binding.reset.setOnClickListener {
-            //Java reset
-            binding.scratchCard.apply {
-                setScratchDrawable(ContextCompat.getDrawable(context, R.drawable.scratch))
-                setScratchListener(this@DemoFragment)
-                setScratchWidthDip(ScratchCardUtils.dipToPx(context!!, 40f))
-                setRevealFullAtPercent(40)
-                setScratchEnabled(true)
-                resetScratch()
-            }
+            //Props reset
+            binding.scratchCard.resetScratch()
 
             //Xml Reset
             binding.brushSizeSeekBar.progress = 40
@@ -61,7 +61,6 @@ class DemoFragment : DialogFragment(), ScratchListener {
             binding.scratchEffectToggle.isChecked = true
             binding.scratchEffectToggle.text = getString(R.string.enabled)
         }
-        binding.reset.performClick()
     }
 
     private fun setControlPanelListeners() {

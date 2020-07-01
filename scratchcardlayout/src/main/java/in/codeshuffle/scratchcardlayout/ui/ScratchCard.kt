@@ -172,6 +172,10 @@ internal class ScratchCard(context: Context, attrs: AttributeSet?, defStyle: Int
         }
     }
 
+    fun revealScratch() {
+        stopScratchingAndRevealFull()
+    }
+
     private fun setupScratchDrawableOnView() {
         if (mBitmap != null) mBitmap!!.recycle()
         mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -185,6 +189,6 @@ internal class ScratchCard(context: Context, attrs: AttributeSet?, defStyle: Int
     }
 
     internal interface ScratchCardInterface {
-        open fun onFullReveal()
+        fun onFullReveal()
     }
 }

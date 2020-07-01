@@ -1,12 +1,15 @@
 package `in`.codeshuffle.scratchcardlayout.ui
 
+import `in`.codeshuffle.scratchcardlayout.R
 import `in`.codeshuffle.scratchcardlayout.listener.ScratchListener
+import `in`.codeshuffle.scratchcardlayout.util.ScratchCardUtils
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 
 class ScratchCardLayout : CardView, ScratchCard.ScratchCardInterface {
     private lateinit var scratchCard: ScratchCard
@@ -27,6 +30,7 @@ class ScratchCardLayout : CardView, ScratchCard.ScratchCardInterface {
         scratchCard = ScratchCard(context, attrs, defStyleAttr)
         scratchCard.setRevealListener(this)
         setupScratchView()
+        resetScratch()
     }
 
     /**
@@ -99,6 +103,14 @@ class ScratchCardLayout : CardView, ScratchCard.ScratchCardInterface {
      * Reset scratch. (As if its a whole new scratch session
      */
     fun resetScratch() {
+        setScratchEnabled(true)
         scratchCard.resetScratch()
+    }
+
+    /**
+     * Reveal scratch. (Reveal whats underneath the scratch view)
+     */
+    fun revealScratch(){
+        scratchCard.revealScratch()
     }
 }
