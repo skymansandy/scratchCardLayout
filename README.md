@@ -4,7 +4,6 @@
 [![MinSDK](https://img.shields.io/badge/API-14%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=14)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ScratchCardLayout-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/7597)
 [![Download](https://api.bintray.com/packages/skymansandy/ScratchCard/ScratchCardLayout/images/download.svg) ](https://bintray.com/skymansandy/ScratchCard/ScratchCardLayout/_latestVersion)
-[![Build Status](https://travis-ci.org/skymansandy/scratchCardLayout.svg?branch=master)](https://travis-ci.org/skymansandy/scratchCardLayout)
 
 ## A simple Android library for scratch card reveal kind of effect
 
