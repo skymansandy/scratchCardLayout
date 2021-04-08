@@ -37,7 +37,7 @@ class WebPageFragment : DialogFragment() {
         }
     }
 
-    private val mWebClient: WebViewClient? = object : WebViewClient() {
+    private val mWebClient: WebViewClient = object : WebViewClient() {
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             if (!isAdded) return
